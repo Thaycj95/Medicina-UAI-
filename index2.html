@@ -96,7 +96,29 @@
         .subject-item .subject-name {
             flex-grow: 1;
         }
-        .tooltip {
+        /* Estilos para el tooltip de nota */
+        .subject-item .grade-tooltip {
+            visibility: hidden;
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px 10px;
+            position: absolute;
+            z-index: 1;
+            bottom: 125%; /* Position the tooltip above the text */
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s;
+            white-space: nowrap; /* Prevent text wrapping */
+        }
+        .subject-item.approved:hover .grade-tooltip {
+            visibility: visible;
+            opacity: 1;
+        }
+        /* Estilos para el tooltip de correlativas */
+        .subject-item .correlative-tooltip {
             visibility: hidden;
             background-color: rgba(0, 0, 0, 0.8);
             color: #fff;
@@ -112,7 +134,7 @@
             transition: opacity 0.3s;
             width: max-content;
         }
-        .subject-item.locked:hover .tooltip {
+        .subject-item.locked:hover .correlative-tooltip {
             visibility: visible;
             opacity: 1;
         }
@@ -148,45 +170,56 @@
             <div class="quarter">
                 <h3>Primer Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="01" data-name="ANATOMÍA HUMANA I" data-grade="">
+                    <li class="subject-item" data-code="01" data-name="ANATOMÍA HUMANA I">
                         <span class="subject-name">ANATOMÍA HUMANA I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="02" data-name="HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA" data-grade="">
+                    <li class="subject-item" data-code="02" data-name="HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA">
                         <span class="subject-name">HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="03" data-name="INFORMÁTICA BIOMÉDICA I" data-grade="">
+                    <li class="subject-item" data-code="03" data-name="INFORMÁTICA BIOMÉDICA I">
                         <span class="subject-name">INFORMÁTICA BIOMÉDICA I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="04" data-name="HUMANISMO MÉDICO Y BIOÉTICA" data-grade="">
+                    <li class="subject-item" data-code="04" data-name="HUMANISMO MÉDICO Y BIOÉTICA">
                         <span class="subject-name">HUMANISMO MÉDICO Y BIOÉTICA</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="05" data-name="DESTREZAS MÉDICAS EN PRIMEROS AUXILIOS" data-grade="">
+                    <li class="subject-item" data-code="05" data-name="DESTREZAS MÉDICAS EN PRIMEROS AUXILIOS">
                         <span class="subject-name">DESTREZAS MÉDICAS EN PRIMEROS AUXILIOS</span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
             <div class="quarter">
                 <h3>Segundo Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="06" data-name="ANATOMIA HUMANA II" data-correlatives="01" data-grade="">
+                    <li class="subject-item" data-code="06" data-name="ANATOMIA HUMANA II" data-correlatives="01">
                         <span class="subject-name">ANATOMIA HUMANA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="07" data-name="HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA II" data-correlatives="02" data-grade="">
+                    <li class="subject-item" data-code="07" data-name="HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA II" data-correlatives="02">
                         <span class="subject-name">HISTOLOGÍA-CITOLOGÍA-EMBRIOLOGÍA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="08" data-name="INGLÉS I" data-grade="">
+                    <li class="subject-item" data-code="08" data-name="INGLÉS I">
                         <span class="subject-name">INGLÉS I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="09" data-name="PREVENCIÓN PRIMARIA DE LA SALUD" data-grade="">
+                    <li class="subject-item" data-code="09" data-name="PREVENCIÓN PRIMARIA DE LA SALUD">
                         <span class="subject-name">PREVENCIÓN PRIMARIA DE LA SALUD</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="10" data-name="DESTREZAS MÉDICAS EN COMUNICACIÓN MÉDICO-PACIENTE" data-grade="">
+                    <li class="subject-item" data-code="10" data-name="DESTREZAS MÉDICAS EN COMUNICACIÓN MÉDICO-PACIENTE">
                         <span class="subject-name">DESTREZAS MÉDICAS EN COMUNICACIÓN MÉDICO-PACIENTE</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="11" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES I" data-grade="">
+                    <li class="subject-item" data-code="11" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES I">
                         <span class="subject-name">INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -197,53 +230,64 @@
             <div class="quarter">
                 <h3>Primer Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="12" data-name="FISIOLOGÍA Y BIOFÍSICA I" data-correlatives="06,07" data-grade="">
+                    <li class="subject-item" data-code="12" data-name="FISIOLOGÍA Y BIOFÍSICA I" data-correlatives="06,07">
                         <span class="subject-name">FISIOLOGÍA Y BIOFÍSICA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="13" data-name="BIOQUÍMICA Y BIOLOGÍA MOLECULAR I" data-correlatives="06,07" data-grade="">
+                    <li class="subject-item" data-code="13" data-name="BIOQUÍMICA Y BIOLOGÍA MOLECULAR I" data-correlatives="06,07">
                         <span class="subject-name">BIOQUÍMICA Y BIOLOGÍA MOLECULAR I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="14" data-name="PRINCIPIOS BÁSICOS DE SALUD PÚBLICA" data-grade="">
+                    <li class="subject-item" data-code="14" data-name="PRINCIPIOS BÁSICOS DE SALUD PÚBLICA">
                         <span class="subject-name">PRINCIPIOS BÁSICOS DE SALUD PÚBLICA</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="15" data-name="INGLÉS II" data-correlatives="08" data-grade="">
+                    <li class="subject-item" data-code="15" data-name="INGLÉS II" data-correlatives="08">
                         <span class="subject-name">INGLÉS II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="16" data-name="DESTREZAS MÉDICAS: CUIDADOS DE ENFERMERÍA Y HABILIDADES CLÍNICAS" data-correlatives="10" data-grade="">
+                    <li class="subject-item" data-code="16" data-name="DESTREZAS MÉDICAS: CUIDADOS DE ENFERMERÍA Y HABILIDADES CLÍNICAS" data-correlatives="10">
                         <span class="subject-name">DESTREZAS MÉDICAS: CUIDADOS DE ENFERMERÍA Y HABILIDADES CLÍNICAS</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
             <div class="quarter">
                 <h3>Segundo Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="17" data-name="FISIOLOGÍA Y BIOFÍSICA II" data-correlatives="12" data-grade="">
+                    <li class="subject-item" data-code="17" data-name="FISIOLOGÍA Y BIOFÍSICA II" data-correlatives="12">
                         <span class="subject-name">FISIOLOGÍA Y BIOFÍSICA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="18" data-name="BIOQUÍMICA Y BIOLOGÍA MOLECULAR" data-correlatives="13" data-grade="">
+                    <li class="subject-item" data-code="18" data-name="BIOQUÍMICA Y BIOLOGÍA MOLECULAR" data-correlatives="13">
                         <span class="subject-name">BIOQUÍMICA Y BIOLOGÍA MOLECULAR</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="19" data-name="MEDICINA DE ESTILO DE VIDA" data-correlatives="14" data-grade="">
+                    <li class="subject-item" data-code="19" data-name="MEDICINA DE ESTILO DE VIDA" data-correlatives="14">
                         <span class="subject-name">MEDICINA DE ESTILO DE VIDA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="20" data-name="INFORMÁTICA BIOMÉDICA II" data-correlatives="03" data-grade="">
+                    <li class="subject-item" data-code="20" data-name="INFORMÁTICA BIOMÉDICA II" data-correlatives="03">
                         <span class="subject-name">INFORMÁTICA BIOMÉDICA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="21" data-name="DESTREZAS MÉDICAS: ACCIONES EN LA COMUNIDAD" data-correlatives="16" data-grade="">
+                    <li class="subject-item" data-code="21" data-name="DESTREZAS MÉDICAS: ACCIONES EN LA COMUNIDAD" data-correlatives="16">
                         <span class="subject-name">DESTREZAS MÉDICAS: ACCIONES EN LA COMUNIDAD</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="22" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES II" data-correlatives="11" data-grade="">
+                    <li class="subject-item" data-code="22" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES II" data-correlatives="11">
                         <span class="subject-name">INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -254,60 +298,73 @@
             <div class="quarter">
                 <h3>Primer Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="23" data-name="PATOLOGÍA I" data-correlatives="17" data-grade="">
+                    <li class="subject-item" data-code="23" data-name="PATOLOGÍA I" data-correlatives="17">
                         <span class="subject-name">PATOLOGÍA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="24" data-name="FISIOPATOLOGÍA I" data-correlatives="17" data-grade="">
+                    <li class="subject-item" data-code="24" data-name="FISIOPATOLOGÍA I" data-correlatives="17">
                         <span class="subject-name">FISIOPATOLOGÍA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="25" data-name="MICROBIOLOGÍA E INMUNOLOGÍA I" data-correlatives="18" data-grade="">
+                    <li class="subject-item" data-code="25" data-name="MICROBIOLOGÍA E INMUNOLOGÍA I" data-correlatives="18">
                         <span class="subject-name">MICROBIOLOGÍA E INMUNOLOGÍA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="26" data-name="FARMACOLOGÍA I" data-correlatives="18" data-grade="">
+                    <li class="subject-item" data-code="26" data-name="FARMACOLOGÍA I" data-correlatives="18">
                         <span class="subject-name">FARMACOLOGÍA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="27" data-name="SALUD MENTAL Y NEUROCIENCIAS I" data-grade="">
+                    <li class="subject-item" data-code="27" data-name="SALUD MENTAL Y NEUROCIENCIAS I">
                         <span class="subject-name">SALUD MENTAL Y NEUROCIENCIAS I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="28" data-name="DESTREZAS MÉDICAS: INTRODUCCIÓN A LA SEMIOLOGÍA" data-correlatives="21" data-grade="">
+                    <li class="subject-item" data-code="28" data-name="DESTREZAS MÉDICAS: INTRODUCCIÓN A LA SEMIOLOGÍA" data-correlatives="21">
                         <span class="subject-name">DESTREZAS MÉDICAS: INTRODUCCIÓN A LA SEMIOLOGÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
             <div class="quarter">
                 <h3>Segundo Cuatrimestre</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="29" data-name="PATOLOGÍA II" data-correlatives="23" data-grade="">
+                    <li class="subject-item" data-code="29" data-name="PATOLOGÍA II" data-correlatives="23">
                         <span class="subject-name">PATOLOGÍA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="30" data-name="FISIOPATOLOGÍA II" data-correlatives="24" data-grade="">
+                    <li class="subject-item" data-code="30" data-name="FISIOPATOLOGÍA II" data-correlatives="24">
                         <span class="subject-name">FISIOPATOLOGÍA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="31" data-name="MICROBIOLOGÍA E INMUNOLOGÍA II" data-correlatives="25" data-grade="">
+                    <li class="subject-item" data-code="31" data-name="MICROBIOLOGÍA E INMUNOLOGÍA II" data-correlatives="25">
                         <span class="subject-name">MICROBIOLOGÍA E INMUNOLOGÍA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="32" data-name="FARMACOLOGÍA II" data-correlatives="26" data-grade="">
+                    <li class="subject-item" data-code="32" data-name="FARMACOLOGÍA II" data-correlatives="26">
                         <span class="subject-name">FARMACOLOGÍA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="33" data-name="INTRODUCCIÓN A LA INVESTIGACIÓN BIOMÉDICA" data-grade="">
+                    <li class="subject-item" data-code="33" data-name="INTRODUCCIÓN A LA INVESTIGACIÓN BIOMÉDICA">
                         <span class="subject-name">INTRODUCCIÓN A LA INVESTIGACIÓN BIOMÉDICA</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="34" data-name="DESTREZAS MÉDICAS EN EL PRIMER NIVEL DE ATENCIÓN" data-correlatives="21" data-grade="">
+                    <li class="subject-item" data-code="34" data-name="DESTREZAS MÉDICAS EN EL PRIMER NIVEL DE ATENCIÓN" data-correlatives="21">
                         <span class="subject-name">DESTREZAS MÉDICAS EN EL PRIMER NIVEL DE ATENCIÓN</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="35" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES III" data-correlatives="22" data-grade="">
+                    <li class="subject-item" data-code="35" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES III" data-correlatives="22">
                         <span class="subject-name">INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES III</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -320,37 +377,46 @@
             <div class="quarter">
                 <h3>Anual</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="36" data-name="MEDICINA INTERNA I" data-correlatives="28,29,30,31,34" data-grade="">
+                    <li class="subject-item" data-code="36" data-name="MEDICINA INTERNA I" data-correlatives="28,29,30,31,34">
                         <span class="subject-name">MEDICINA INTERNA I</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="37" data-name="MEDICINA INTERNA II" data-correlatives="29,30,31,32,34,36" data-grade="">
+                    <li class="subject-item" data-code="37" data-name="MEDICINA INTERNA II" data-correlatives="29,30,31,32,34,36">
                         <span class="subject-name">MEDICINA INTERNA II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="38" data-name="BÚSQUEDA E INTERPRETACIÓN DE BIBLIOGRAFÍA BIOMÉDICA" data-correlatives="33" data-grade="">
+                    <li class="subject-item" data-code="38" data-name="BÚSQUEDA E INTERPRETACIÓN DE BIBLIOGRAFÍA BIOMÉDICA" data-correlatives="33">
                         <span class="subject-name">BÚSQUEDA E INTERPRETACIÓN DE BIBLIOGRAFÍA BIOMÉDICA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="39" data-name="CIRUGÍA GENERAL" data-correlatives="27,28,29,30" data-grade="">
+                    <li class="subject-item" data-code="39" data-name="CIRUGÍA GENERAL" data-correlatives="27,28,29,30">
                         <span class="subject-name">CIRUGÍA GENERAL</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="40" data-name="TRABAJO, AMBIENTE Y SALUD" data-grade="">
+                    <li class="subject-item" data-code="40" data-name="TRABAJO, AMBIENTE Y SALUD">
                         <span class="subject-name">TRABAJO, AMBIENTE Y SALUD</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="41" data-name="GESTIÓN EN SALUD Y SEGURIDAD DEL PACIENTE" data-grade="">
+                    <li class="subject-item" data-code="41" data-name="GESTIÓN EN SALUD Y SEGURIDAD DEL PACIENTE">
                         <span class="subject-name">GESTIÓN EN SALUD Y SEGURIDAD DEL PACIENTE</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="42" data-name="FUNDAMENTOS DE DIAGNÓSTICO POR IMÁGENES" data-grade="">
+                    <li class="subject-item" data-code="42" data-name="FUNDAMENTOS DE DIAGNÓSTICO POR IMÁGENES">
                         <span class="subject-name">FUNDAMENTOS DE DIAGNÓSTICO POR IMÁGENES</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="43" data-name="OPTATIVA I" data-grade="">
+                    <li class="subject-item" data-code="43" data-name="OPTATIVA I">
                         <span class="subject-name">OPTATIVA I</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="44" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES IV" data-correlatives="35" data-grade="">
+                    <li class="subject-item" data-code="44" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES IV" data-correlatives="35">
                         <span class="subject-name">INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES IV</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -361,63 +427,78 @@
             <div class="quarter">
                 <h3>Anual</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="45" data-name="DISEÑO DE INVESTIGACIONES BIOMÉDICAS" data-correlatives="38" data-grade="">
+                    <li class="subject-item" data-code="45" data-name="DISEÑO DE INVESTIGACIONES BIOMÉDICAS" data-correlatives="38">
                         <span class="subject-name">DISEÑO DE INVESTIGACIONES BIOMÉDICAS</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="46" data-name="ENFERMEDADES INFECCIOSAS" data-correlatives="36,37" data-grade="">
+                    <li class="subject-item" data-code="46" data-name="ENFERMEDADES INFECCIOSAS" data-correlatives="36,37">
                         <span class="subject-name">ENFERMEDADES INFECCIOSAS</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="47" data-name="FARMACOLOGÍA Y TERAPÉUTICA" data-correlatives="32,36,37" data-grade="">
+                    <li class="subject-item" data-code="47" data-name="FARMACOLOGÍA Y TERAPÉUTICA" data-correlatives="32,36,37">
                         <span class="subject-name">FARMACOLOGÍA Y TERAPÉUTICA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="48" data-name="SALUD MENTAL Y NEUROCIENCIAS II" data-correlatives="27,36,37" data-grade="">
+                    <li class="subject-item" data-code="48" data-name="SALUD MENTAL Y NEUROCIENCIAS II" data-correlatives="27,36,37">
                         <span class="subject-name">SALUD MENTAL Y NEUROCIENCIAS II</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="49" data-name="GINECOLOGÍA Y OBSTETRICIA" data-correlatives="36,37,39" data-grade="">
+                    <li class="subject-item" data-code="49" data-name="GINECOLOGÍA Y OBSTETRICIA" data-correlatives="36,37,39">
                         <span class="subject-name">GINECOLOGÍA Y OBSTETRICIA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="50" data-name="PEDIATRÍA" data-correlatives="36,37" data-grade="">
+                    <li class="subject-item" data-code="50" data-name="PEDIATRÍA" data-correlatives="36,37">
                         <span class="subject-name">PEDIATRÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="51" data-name="MEDICINA LEGAL Y BIOÉTICA" data-correlatives="36,37" data-grade="">
+                    <li class="subject-item" data-code="51" data-name="MEDICINA LEGAL Y BIOÉTICA" data-correlatives="36,37">
                         <span class="subject-name">MEDICINA LEGAL Y BIOÉTICA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="52" data-name="TOXICOLOGÍA" data-correlatives="36,37" data-grade="">
+                    <li class="subject-item" data-code="52" data-name="TOXICOLOGÍA" data-correlatives="36,37">
                         <span class="subject-name">TOXICOLOGÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="53" data-name="EMERGENTOLOGÍA" data-correlatives="36,37,39" data-grade="">
+                    <li class="subject-item" data-code="53" data-name="EMERGENTOLOGÍA" data-correlatives="36,37,39">
                         <span class="subject-name">EMERGENTOLOGÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="54" data-name="GERONTOLOGÍA" data-correlatives="36,37,39" data-grade="">
+                    <li class="subject-item" data-code="54" data-name="GERONTOLOGÍA" data-correlatives="36,37,39">
                         <span class="subject-name">GERONTOLOGÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="55" data-name="REHABILITACIÓN" data-correlatives="36,37,39" data-grade="">
+                    <li class="subject-item" data-code="55" data-name="REHABILITACIÓN" data-correlatives="36,37,39">
                         <span class="subject-name">REHABILITACIÓN</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="56" data-name="ORTOPEDIA Y TRAUMATOLOGÍA" data-correlatives="36,37,39" data-grade="">
+                    <li class="subject-item" data-code="56" data-name="ORTOPEDIA Y TRAUMATOLOGÍA" data-correlatives="36,37,39">
                         <span class="subject-name">ORTOPEDIA Y TRAUMATOLOGÍA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="57" data-name="OPTATIVA II" data-grade="">
+                    <li class="subject-item" data-code="57" data-name="OPTATIVA II">
                         <span class="subject-name">OPTATIVA II</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="58" data-name="OPTATIVA III" data-grade="">
+                    <li class="subject-item" data-code="58" data-name="OPTATIVA III">
                         <span class="subject-name">OPTATIVA III</span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="59" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES V" data-correlatives="44" data-grade="">
+                    <li class="subject-item" data-code="59" data-name="INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES V" data-correlatives="44">
                         <span class="subject-name">INTEGRACIÓN Y ENTRENAMIENTO DE ACTIVIDADES PROFESIONALES V</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -428,21 +509,25 @@
             <div class="quarter">
                 <h3>Anual</h3>
                 <ul class="subject-list">
-                    <li class="subject-item" data-code="60" data-name="PASANTÍA MÉDICA COMUNITARIA" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39" data-grade="">
+                    <li class="subject-item" data-code="60" data-name="PASANTÍA MÉDICA COMUNITARIA" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39">
                         <span class="subject-name">PASANTÍA MÉDICA COMUNITARIA</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="61" data-name="INTERNADO ROTATORIO OBLIGATORIO" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59" data-grade="">
+                    <li class="subject-item" data-code="61" data-name="INTERNADO ROTATORIO OBLIGATORIO" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59">
                         <span class="subject-name">INTERNADO ROTATORIO OBLIGATORIO</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="62" data-name="TRABAJO FINAL" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59" data-grade="">
+                    <li class="subject-item" data-code="62" data-name="TRABAJO FINAL" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59">
                         <span class="subject-name">TRABAJO FINAL</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
-                    <li class="subject-item" data-code="63" data-name="EXAMEN FINAL" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62" data-grade="">
+                    <li class="subject-item" data-code="63" data-name="EXAMEN FINAL" data-correlatives="01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62">
                         <span class="subject-name">EXAMEN FINAL</span>
-                        <span class="lock-icon">🔒<span class="tooltip"></span></span>
+                        <span class="lock-icon">🔒<span class="correlative-tooltip"></span></span>
+                        <span class="grade-tooltip"></span>
                     </li>
                 </ul>
             </div>
@@ -556,6 +641,10 @@
                 });
 
                 const lockIcon = item.querySelector('.lock-icon');
+                const gradeTooltip = item.querySelector('.grade-tooltip');
+                const correlativeTooltip = item.querySelector('.correlative-tooltip');
+
+
                 if (approvedSubjects.has(code)) {
                     item.classList.add('approved');
                     item.classList.remove('locked');
@@ -563,6 +652,13 @@
                     if (lockIcon) {
                         lockIcon.style.display = 'none'; // Oculta el candado si la materia está aprobada
                     }
+                    if (gradeTooltip) {
+                        gradeTooltip.textContent = `Nota: ${subjectGrades[code]}`; // Muestra la nota
+                    }
+                    if (correlativeTooltip) {
+                        correlativeTooltip.textContent = ''; // Limpia el tooltip de correlativas
+                    }
+
                     const grade = parseFloat(subjectGrades[code]);
                     if (!isNaN(grade)) {
                         totalGrades += grade;
@@ -572,18 +668,26 @@
                     item.classList.add('locked');
                     item.classList.remove('approved');
                     item.style.cursor = 'not-allowed';
-                    const tooltip = item.querySelector('.tooltip');
-                    if (tooltip) {
-                        tooltip.textContent = "Faltan: " + missingCorrelatives.join(', ');
+                    if (correlativeTooltip) {
+                        correlativeTooltip.textContent = "Faltan: " + missingCorrelatives.join(', ');
                     }
                     if (lockIcon) {
                         lockIcon.style.display = 'inline-block'; // Muestra el candado si la materia está bloqueada
+                    }
+                    if (gradeTooltip) {
+                        gradeTooltip.textContent = ''; // Limpia el tooltip de nota
                     }
                 } else {
                     item.classList.remove('approved', 'locked');
                     item.style.cursor = 'pointer';
                     if (lockIcon) {
                         lockIcon.style.display = 'none'; // Oculta el candado si no tiene correlativas o están aprobadas
+                    }
+                    if (gradeTooltip) {
+                        gradeTooltip.textContent = ''; // Limpia el tooltip de nota
+                    }
+                    if (correlativeTooltip) {
+                        correlativeTooltip.textContent = ''; // Limpia el tooltip de correlativas
                     }
                 }
             });
@@ -602,7 +706,7 @@
                 const correlatives = item.dataset.correlatives ? item.dataset.correlatives.split(',') : [];
 
                 if (approvedSubjects.has(code)) {
-                    // Si ya está aprobada, muestra la nota y permite desaprobar
+                    // Si ya está aprobada, pregunta si desea desaprobar
                     const currentGrade = subjectGrades[code];
                     const confirmUnapprove = confirm(`La materia "${item.dataset.name}" ya está aprobada con una nota de: ${currentGrade}.\n¿Deseas desaprobarla?`);
                     if (confirmUnapprove) {
@@ -636,8 +740,9 @@
                         subjectGrades[code] = grade;
                         saveProgress();
                         updateCurriculum();
-                        alert(`La nota para ${item.dataset.name} es: ${grade}`); // Muestra la nota inmediatamente después de aprobar
+                        // No es necesario el alert aquí porque ahora la nota se mostrará en el tooltip.
                     } else {
+                        const missingNames = missingCorrelatives.map(code => subjectsData[code]);
                         alert(`Debes aprobar las siguientes materias primero: ${missingNames.join(', ')}`);
                     }
                 }
